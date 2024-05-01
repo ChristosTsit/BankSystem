@@ -20,5 +20,6 @@ public class Main {
             e.printStackTrace();
         }
 
+        new CreateUserPage(banks);
     }
 }

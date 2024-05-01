@@ -71,4 +71,27 @@ public class Client {
     public ArrayList<BankAccount> getAccounts() {
         return accounts;
     }
+
+    public void printUser(){
+        System.out.println("Name:"+name+"\nSSN:"+ssn+"\nSalary"+salary);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        // If the object is compared with itself then return true
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof Client)) {
+            return false;
+        }
+
+        // typecast o to Complex so that we can compare data members
+        Client cl= (Client) obj;
+
+        // Compare the data members and return accordingly
+        return ssn == cl.getSsn();
+    }
 }
