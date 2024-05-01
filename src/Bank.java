@@ -32,5 +32,15 @@ public class Bank {
         }
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public int getNumberOfClients() {
+        return numberOfClients;
+    }
+
+    public ArrayList<Client> getClients() {
+        return clients;
+    }
 }
