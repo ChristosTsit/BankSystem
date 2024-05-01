@@ -42,4 +42,9 @@ public class Bank {
     public ArrayList<Client> getClients() {
         return clients;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

@@ -14,9 +14,8 @@ public class CreateUserPage extends JFrame {
     private JTextField ssn = new JTextField("Enter Social Security Number...");
     private JTextField salary = new JTextField("Enter Salary...");
 
-    private ArrayList<Client> users = new ArrayList<>();
 
-    CreateUserPage(ArrayList<Bank> banks){
+    CreateUserPage(ArrayList<Bank> banks, ArrayList<Client> users){
         panel.add(nameLabel);
         panel.add(name);
         panel.add(ssnLabel);
@@ -98,11 +97,11 @@ public class CreateUserPage extends JFrame {
                     Client cl = new Client(nameText,ssnValue,salaryValue);
                     if(users.contains(cl)){
                         JOptionPane.showMessageDialog(null, "Successful Log In", "Information", JOptionPane.INFORMATION_MESSAGE);
-                        new UserPage(banks,cl);
+                        new UserPage(banks,users,cl);
                         dispose();
                     }
                 } catch (NumberFormatException error) {
-                    JOptionPane.showMessageDialog(null, "Invalid Format. Please enter a valid number.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Invalid Credentials!", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
             }

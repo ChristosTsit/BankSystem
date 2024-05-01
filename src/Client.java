@@ -32,29 +32,24 @@ public class Client {
     public void joinBank(Bank b){
         if(!b.getClients().contains(this)){
             b.addClient(this);
+            BankAccount bankAccount = new BankAccount(this,b);
+            if(!accounts.contains(bankAccount)){
+                accounts.add(bankAccount);
+            }
         }
     }
 
     public void leaveBank(Bank b){
         if(b.getClients().contains(this)){
             b.removeClient(this);
+            for(BankAccount bs:accounts){
+                if(bs.getBank()==b){
+                    accounts.remove(bs);
+                }
+            }
         }
     }
 
-    public void createAccount(int balance, Bank b){
-        BankAccount bankAccount = new BankAccount(balance,this,b);
-        if(!accounts.contains(bankAccount)){
-            accounts.add(bankAccount);
-        }
-    }
-
-    public void deleteAccount(BankAccount acc){
-        if(accounts.contains(acc)){
-            accounts.remove(acc);
-        }else {
-            System.out.println("No Such Account");
-        }
-    }
 
     public String getName() {
         return name;
@@ -92,6 +87,6 @@ public class Client {
         Client cl= (Client) obj;
 
         // Compare the data members and return accordingly
-        return ssn == cl.getSsn();
+        return (ssn == cl.getSsn() && name.equals(cl.getName()) && salary==cl.getSalary());
     }
 }

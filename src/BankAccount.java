@@ -4,8 +4,8 @@ public class BankAccount {
     private Client owner;
     private Bank bank;
 
-    BankAccount(int balance,Client client, Bank bank){
-        this.balance = balance;
+    BankAccount(Client client, Bank bank){
+        this.balance = 0;
         this.owner = client;
         this.bank = bank;
     }
@@ -62,5 +62,10 @@ public class BankAccount {
 
     public Bank getBank() {
         return bank;
+    }
+
+    @Override
+    public String toString(){
+        return this.getBank().getName()+" Account";
     }
 }

@@ -6,6 +6,8 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         ArrayList<Bank> banks = new ArrayList<>();
+        ArrayList<Client> users = new ArrayList<>();
+
         String fileName = "C:\\Users\\chris\\IdeaProjects\\BankSystem1\\src\\Banks.txt";
 
         //Reading the file line by line to get all the names of the banks
@@ -19,7 +21,6 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        new CreateUserPage(banks);
+        new CreateUserPage(banks,users);
     }
 }
