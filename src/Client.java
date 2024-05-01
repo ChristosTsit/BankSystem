@@ -6,27 +6,10 @@ public class Client {
     private int salary;
     private ArrayList<BankAccount> accounts;
 
-    Client(String name, long ssn, int salary){
+    Client(String name, long ssn){
         this.name = name;
         this.ssn = ssn;
-        this.salary = salary;
         accounts = new ArrayList<>();
-    }
-
-    public int maxLoan(){
-        if(salary<10000){
-            return 0;
-        }else if(salary<20000){
-            return 2000;
-        }else if(salary<40000){
-            return 4000;
-        }else if(salary<60000){
-            return 6000;
-        }else if(salary<80000){
-            return 8000;
-        }else{
-            return 10000;
-        }
     }
 
     public void joinBank(Bank b){
@@ -87,6 +70,6 @@ public class Client {
         Client cl= (Client) obj;
 
         // Compare the data members and return accordingly
-        return (ssn == cl.getSsn() && name.equals(cl.getName()) && salary==cl.getSalary());
+        return (ssn == cl.getSsn()&& name.equals(cl.getName()));
     }
 }

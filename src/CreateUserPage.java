@@ -9,10 +9,8 @@ public class CreateUserPage extends JFrame {
     private JButton exitButton = new JButton("Exit");
     private JLabel nameLabel = new JLabel("Name:");
     private JLabel ssnLabel = new JLabel("SSN:");
-    private JLabel salaryLabel = new JLabel("Salary:");
     private JTextField name = new JTextField("Enter Name...");
     private JTextField ssn = new JTextField("Enter Social Security Number...");
-    private JTextField salary = new JTextField("Enter Salary...");
 
 
     CreateUserPage(ArrayList<Bank> banks, ArrayList<Client> users){
@@ -20,8 +18,6 @@ public class CreateUserPage extends JFrame {
         panel.add(name);
         panel.add(ssnLabel);
         panel.add(ssn);
-        panel.add(salaryLabel);
-        panel.add(salary);
         panel.add(createButton);
         panel.add(loginButton);
         panel.add(exitButton);
@@ -37,11 +33,6 @@ public class CreateUserPage extends JFrame {
                 ssn.setText("");
             }
         });
-        salary.addMouseListener(new MouseAdapter(){
-            public void mouseClicked(MouseEvent e){
-                salary.setText("");
-            }
-        });
 
         //Creating Button Listeners
         createButton.addActionListener(new ActionListener() {
@@ -49,19 +40,16 @@ public class CreateUserPage extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String nameText = name.getText();
                 String ssnText = ssn.getText();
-                String salaryText = salary.getText();
                 long ssnValue;
-                int salaryValue;
 
-                if(nameText.isEmpty() ||ssnText.isEmpty()||salaryText.isEmpty()){
+                if(nameText.isEmpty() ||ssnText.isEmpty()){
                     JOptionPane.showMessageDialog(null, "You need to fill all of the fields", "Error", JOptionPane.ERROR_MESSAGE);
                 }else{
                     //Check if format is correct
                     try {
                         ssnValue = Long.parseLong(ssnText);
-                        salaryValue = Integer.parseInt(salaryText);
 
-                        Client cl = new Client(nameText,ssnValue,salaryValue);
+                        Client cl = new Client(nameText,ssnValue);
                         if(users.contains(cl)){
                             JOptionPane.showMessageDialog(null, "User Already Exists", "Error", JOptionPane.ERROR_MESSAGE);
                         }else {
@@ -87,21 +75,21 @@ public class CreateUserPage extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String nameText = name.getText();
                 String ssnText = ssn.getText();
-                String salaryText = salary.getText();
+
                 long ssnValue;
-                int salaryValue;
                 try {
                     ssnValue = Long.parseLong(ssnText);
-                    salaryValue = Integer.parseInt(salaryText);
 
-                    Client cl = new Client(nameText,ssnValue,salaryValue);
+                    Client cl = new Client(nameText,ssnValue);
                     if(users.contains(cl)){
                         JOptionPane.showMessageDialog(null, "Successful Log In", "Information", JOptionPane.INFORMATION_MESSAGE);
                         new UserPage(banks,users,cl);
                         dispose();
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Invalid Credentials!", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (NumberFormatException error) {
-                    JOptionPane.showMessageDialog(null, "Invalid Credentials!", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Invalid Format. Please enter a valid number.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
             }

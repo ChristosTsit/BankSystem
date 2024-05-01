@@ -16,7 +16,6 @@ public class UserPage extends JFrame {
 
     private JLabel banksLabel = new JLabel("Banks:");
     private JLabel usernameLabel = new JLabel();
-    private JLabel salaryLabel = new JLabel();
     private JLabel accountsLabel = new JLabel("Accounts");
 
     private  JList<BankAccount> bankAccountsList;
@@ -25,7 +24,6 @@ public class UserPage extends JFrame {
 
     UserPage(ArrayList<Bank> banks ,ArrayList<Client> users, Client cl){
         usernameLabel.setText("Name:"+cl.getName());
-        salaryLabel.setText("Salary:"+cl.getSalary()+"$");
 
         Bank[] bankArray = banks.toArray(new Bank[0]);
         BankAccount[] accArray = cl.getAccounts().toArray(new BankAccount[0]);
@@ -34,7 +32,6 @@ public class UserPage extends JFrame {
         bankAccountsList = new JList<>(accArray);
         
         personalPanel.add(usernameLabel);
-        personalPanel.add(salaryLabel);
 
         bankPanel.add(banksLabel);
         bankPanel.add(bankList);
@@ -66,7 +63,19 @@ public class UserPage extends JFrame {
                     // Update the JList with the new array of BankAccount objects
                     bankAccountsList.setListData(accArray);
                 }
+            }
+        });
 
+        accessButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BankAccount acc = bankAccountsList.getSelectedValue();
+                if(acc==null){
+                    JOptionPane.showMessageDialog(null, "You need to select a Bank Account", "Error", JOptionPane.ERROR_MESSAGE);
+                }else {
+                    new BankAccountGUI(banks ,users, cl,acc);
+                    dispose();
+                }
             }
         });
 

@@ -25,24 +25,25 @@ public class BankAccount {
     }
 
     public void takeLoan(int amount){
-        if (amount< owner.maxLoan()){
-            System.out.println("Insufficient Credit Score");
-        }else {
             balance+=amount;
-            loan+=(amount*20/100);
-            System.out.println("Loan Approved");
-        }
+            loan= loan + amount+(amount*20/100);
     }
 
-    public void payupLoan(int amount){
+    public void payLoan(int amount){
         if (amount <= balance) {
-            balance-=amount;
-            loan-=amount;
-            if(loan==0){
-                System.out.println("The loan has been repayed!");
+            if(amount<loan){
+                balance-=amount;
+                loan-=amount;
+                if(loan==0){
+                    System.out.println("The loan has been repayed!");
+                }else {
+                    System.out.println("Payment Completed!\n"+loan+"$ remaining!");
+                }
             }else {
-                System.out.println("Payment Completed!\n"+loan+"$ remaining!");
+                balance-=loan;
+                loan = 0;
             }
+
         }else {
             System.out.println("Insufficient Funds");
         }
