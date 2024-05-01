@@ -1,10 +1,25 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
-      Bank b = new Bank("Eurobank");
-      Client cl = new Client("Homer",231321,10000);
-      b.addClient(cl);
-      b.addClient(cl);
-      b.removeClient(cl);
-      b.removeClient(cl);
+        ArrayList<Bank> banks = new ArrayList<>();
+        String fileName = "C:\\Users\\chris\\IdeaProjects\\BankSystem1\\src\\Banks.txt";
+
+        //Reading the file line by line to get all the names of the banks
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                // Assuming each line contains a name
+                Bank bank = new Bank(line.trim()); // Assuming your Bank class has a constructor taking the name
+                banks.add(bank);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        new CreateUserPage(banks);
     }
 }

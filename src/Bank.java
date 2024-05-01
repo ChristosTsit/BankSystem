@@ -9,7 +9,6 @@ public class Bank {
         this.name = name;
         this.numberOfClients = 0;
         this.clients = new ArrayList<>();
-        System.out.println("Bank created successfully!!"+"\nName:"+this.name);
     }
 
     public void addClient(Client cl){
