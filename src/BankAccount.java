@@ -1,50 +1,51 @@
+import javax.swing.*;
+
 public class BankAccount {
     private int balance;
     private int loan;
     private Client owner;
     private Bank bank;
 
-    BankAccount(int balance,Client client, Bank bank){
-        this.balance = balance;
+    BankAccount(Client client, Bank bank){
+        this.balance = 0;
         this.owner = client;
         this.bank = bank;
     }
 
     public void withdraw(int amount){
         if(balance<amount){
-            System.out.println("Insufficient Funds");
+            JOptionPane.showMessageDialog(null, "Insufficient Funds", "Error", JOptionPane.ERROR_MESSAGE);
         }else{
             balance-=amount;
-            System.out.println("Withdraw Completed");
+            JOptionPane.showMessageDialog(null, "Withdraw Completed\nYour new balance is:"+balance+"$", "Information", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
     public void deposit(int amount){
         balance+=amount;
-        System.out.println("Deposit Completed");
+        JOptionPane.showMessageDialog(null, "Deposit Completed\nYour new balance is:"+balance+"$", "Information", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void takeLoan(int amount){
-        if (amount< owner.maxLoan()){
-            System.out.println("Insufficient Credit Score");
-        }else {
             balance+=amount;
-            loan+=(amount*20/100);
-            System.out.println("Loan Approved");
-        }
+            loan= loan + amount+(amount*20/100);
+            JOptionPane.showMessageDialog(null, "Loan Granted\nYour new balance is:"+balance+"$", "Information", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public void payupLoan(int amount){
+    public void payLoan(int amount){
         if (amount <= balance) {
-            balance-=amount;
-            loan-=amount;
-            if(loan==0){
-                System.out.println("The loan has been repayed!");
+            if(amount<loan){
+                balance-=amount;
+                loan-=amount;
+                JOptionPane.showMessageDialog(null, "Payment Completed!\n"+loan+"$ remaining!", "Information", JOptionPane.INFORMATION_MESSAGE);
             }else {
-                System.out.println("Payment Completed!\n"+loan+"$ remaining!");
+                balance-=loan;
+                loan = 0;
+                JOptionPane.showMessageDialog(null, "The loan has been repayed", "Information", JOptionPane.INFORMATION_MESSAGE);
             }
+
         }else {
-            System.out.println("Insufficient Funds");
+            JOptionPane.showMessageDialog(null, "Insufficient Funds", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -62,5 +63,10 @@ public class BankAccount {
 
     public Bank getBank() {
         return bank;
+    }
+
+    @Override
+    public String toString(){
+        return this.getBank().getName()+" Account";
     }
 }

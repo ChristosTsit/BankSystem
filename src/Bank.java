@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class Bank {
@@ -13,11 +14,11 @@ public class Bank {
 
     public void addClient(Client cl){
         if(clients.contains(cl)){
-            System.out.println("Already a client!");
+            JOptionPane.showMessageDialog(null, "Already a client", "Error", JOptionPane.ERROR_MESSAGE);
         }else{
             clients.add(cl);
             numberOfClients++;
-            System.out.println("Client added SUCCESSFULLY!");
+            JOptionPane.showMessageDialog(null, "Client Added", "Information", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
@@ -25,9 +26,9 @@ public class Bank {
         if(clients.contains(cl)){
             clients.remove(cl);
             numberOfClients--;
-            System.out.println("Client removed SUCCESSFULLY!");
+            JOptionPane.showMessageDialog(null, "Client Removed", "Information", JOptionPane.INFORMATION_MESSAGE);
         }else {
-            System.out.println("Client not found!");
+            JOptionPane.showMessageDialog(null, "Client not found", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -41,5 +42,10 @@ public class Bank {
 
     public ArrayList<Client> getClients() {
         return clients;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
