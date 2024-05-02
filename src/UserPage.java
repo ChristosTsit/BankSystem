@@ -21,12 +21,14 @@ public class UserPage extends JFrame {
     private  JList<BankAccount> bankAccountsList;
     private JList<Bank> bankList;
 
+    private BankAccount[] accArray;
+    private Bank[] bankArray;
 
     UserPage(ArrayList<Bank> banks ,ArrayList<Client> users, Client cl){
         usernameLabel.setText("Name:"+cl.getName());
 
-        Bank[] bankArray = banks.toArray(new Bank[0]);
-        BankAccount[] accArray = cl.getAccounts().toArray(new BankAccount[0]);
+        bankArray = banks.toArray(new Bank[0]);
+        accArray = cl.getAccounts().toArray(new BankAccount[0]);
 
         bankList = new JList<>(bankArray);
         bankAccountsList = new JList<>(accArray);

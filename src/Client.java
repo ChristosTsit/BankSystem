@@ -25,9 +25,9 @@ public class Client {
     public void leaveBank(Bank b){
         if(b.getClients().contains(this)){
             b.removeClient(this);
-            for(BankAccount bs:accounts){
-                if(bs.getBank()==b){
-                    accounts.remove(bs);
+            for(int i=0;i<accounts.size();i++){
+                if(accounts.get(i).getBank()==b){
+                    accounts.remove(accounts.get(i));
                 }
             }
         }

@@ -12,6 +12,7 @@ public class BankAccountGUI extends JFrame {
     private JPanel withdrawPanel = new JPanel();
     private JPanel depositPanel = new JPanel();
     private JPanel loanPanel = new JPanel();
+    private JPanel buttonPanel = new JPanel();
 
     private  JLabel balanceLabel = new JLabel();
     private  JLabel loanLabel = new JLabel();
@@ -25,6 +26,8 @@ public class BankAccountGUI extends JFrame {
     private JButton depositButton = new JButton("Deposit");
     private JButton getLoanButton = new JButton("Get Loan");
     private JButton payLoanButton = new JButton("Pay Loan");
+    private JButton goBackButton = new JButton("Exit");
+    private JButton deleteAccButton = new JButton("Delete Account");
 
     BankAccountGUI(ArrayList<Bank> banks , ArrayList<Client> users, Client cl, BankAccount acc){
         balanceLabel.setText("Balance:"+acc.getBalance()+"$");
@@ -33,7 +36,7 @@ public class BankAccountGUI extends JFrame {
         loanLabel.setFont(loanLabel.getFont().deriveFont(Font.BOLD, 30));
 
         //Setting up window's layout
-        panel.setLayout(new GridLayout(4, 1));
+        panel.setLayout(new GridLayout(5, 1));
 
 
         labelPanel.add(balanceLabel);
@@ -52,9 +55,12 @@ public class BankAccountGUI extends JFrame {
         loanPanel.add(getLoanButton);
         loanPanel.add(payLoanTextField);
         loanPanel.add(payLoanButton);
-
-
         panel.add(loanPanel);
+
+        buttonPanel.add(goBackButton);
+        buttonPanel.add(deleteAccButton);
+        panel.add(buttonPanel);
+
 
         //Emptying textfields on click
         withdrawTextField.addMouseListener(new MouseAdapter(){
@@ -136,6 +142,23 @@ public class BankAccountGUI extends JFrame {
                 }catch (NumberFormatException error){
                     JOptionPane.showMessageDialog(null, "Invalid Input", "Error", JOptionPane.ERROR_MESSAGE);
                 }
+            }
+        });
+
+        goBackButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new UserPage(banks,users,cl);
+                dispose();
+            }
+        });
+
+        deleteAccButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cl.leaveBank(acc.getBank());
+                new UserPage(banks,users,cl);
+                dispose();
             }
         });
 
