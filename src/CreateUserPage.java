@@ -85,7 +85,6 @@ public class CreateUserPage extends JFrame {
                         cl = users.get(users.indexOf(cl));
                         JOptionPane.showMessageDialog(null, "Successful Log In", "Information", JOptionPane.INFORMATION_MESSAGE);
                         new UserPage(banks,users,cl);
-                        System.out.println(cl.getAccounts().toString());
                         dispose();
                     }else{
                         JOptionPane.showMessageDialog(null, "Invalid Credentials!", "Error", JOptionPane.ERROR_MESSAGE);

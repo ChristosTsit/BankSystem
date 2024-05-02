@@ -35,6 +35,11 @@ public class BankAccountGUI extends JFrame {
         balanceLabel.setFont(balanceLabel.getFont().deriveFont(Font.BOLD, 30));
         loanLabel.setFont(loanLabel.getFont().deriveFont(Font.BOLD, 30));
 
+        depositTextField.setPreferredSize(new Dimension(150, 20));
+        withdrawTextField.setPreferredSize(new Dimension(170, 20));
+        payLoanTextField.setPreferredSize(new Dimension(150, 20));
+        loanTextField.setPreferredSize(new Dimension(150, 20));
+
         //Setting up window's layout
         panel.setLayout(new GridLayout(5, 1));
 
@@ -165,7 +170,7 @@ public class BankAccountGUI extends JFrame {
         this.setContentPane(panel);
         this.setVisible(true);
 		this.setSize(500, 500);
-		this.setTitle("Create User");
+		this.setTitle("Bank Account Page");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }

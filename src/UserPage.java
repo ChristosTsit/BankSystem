@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -29,6 +30,9 @@ public class UserPage extends JFrame {
 
         bankArray = banks.toArray(new Bank[0]);
         accArray = cl.getAccounts().toArray(new BankAccount[0]);
+
+        //Setting up window's layout
+        panel.setLayout(new GridLayout(4, 1));
 
         bankList = new JList<>(bankArray);
         bankAccountsList = new JList<>(accArray);
@@ -91,8 +95,8 @@ public class UserPage extends JFrame {
 
         this.setContentPane(panel);
         this.setVisible(true);
-		this.setSize(600, 300);
-		this.setTitle("Create User");
+		this.setSize(600, 600);
+		this.setTitle("User Page");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }

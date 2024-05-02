@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 public class BankAccount {
     private int balance;
     private int loan;
@@ -12,21 +14,22 @@ public class BankAccount {
 
     public void withdraw(int amount){
         if(balance<amount){
-            System.out.println("Insufficient Funds");
+            JOptionPane.showMessageDialog(null, "Insufficient Funds", "Error", JOptionPane.ERROR_MESSAGE);
         }else{
             balance-=amount;
-            System.out.println("Withdraw Completed");
+            JOptionPane.showMessageDialog(null, "Withdraw Completed\nYour new balance is:"+balance+"$", "Information", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
     public void deposit(int amount){
         balance+=amount;
-        System.out.println("Deposit Completed");
+        JOptionPane.showMessageDialog(null, "Deposit Completed\nYour new balance is:"+balance+"$", "Information", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void takeLoan(int amount){
             balance+=amount;
             loan= loan + amount+(amount*20/100);
+            JOptionPane.showMessageDialog(null, "Loan Granted\nYour new balance is:"+balance+"$", "Information", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void payLoan(int amount){
@@ -34,18 +37,15 @@ public class BankAccount {
             if(amount<loan){
                 balance-=amount;
                 loan-=amount;
-                if(loan==0){
-                    System.out.println("The loan has been repayed!");
-                }else {
-                    System.out.println("Payment Completed!\n"+loan+"$ remaining!");
-                }
+                JOptionPane.showMessageDialog(null, "Payment Completed!\n"+loan+"$ remaining!", "Information", JOptionPane.INFORMATION_MESSAGE);
             }else {
                 balance-=loan;
                 loan = 0;
+                JOptionPane.showMessageDialog(null, "The loan has been repayed", "Information", JOptionPane.INFORMATION_MESSAGE);
             }
 
         }else {
-            System.out.println("Insufficient Funds");
+            JOptionPane.showMessageDialog(null, "Insufficient Funds", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
