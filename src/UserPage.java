@@ -5,23 +5,24 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class UserPage extends JFrame {
+    //Panels
     private JPanel panel = new JPanel();
     private JPanel personalPanel = new JPanel();
     private JPanel bankPanel = new JPanel();
     private JPanel accountsPanel = new JPanel();
     private JPanel buttonPanel = new JPanel();
-
+    //Buttons
     private JButton logoutButton = new JButton("Log Out");
     private JButton createBankAcc = new JButton("Create Bank Account");
     private JButton accessButton = new JButton("Access Account");
-
+    //Labels
     private JLabel banksLabel = new JLabel("Banks:");
     private JLabel usernameLabel = new JLabel();
     private JLabel accountsLabel = new JLabel("Accounts");
-
+    //Lists
     private  JList<BankAccount> bankAccountsList;
     private JList<Bank> bankList;
-
+    //Arrays to be used for the JLists
     private BankAccount[] accArray;
     private Bank[] bankArray;
 
@@ -29,15 +30,18 @@ public class UserPage extends JFrame {
         usernameLabel.setText("Name:"+cl.getName());
         usernameLabel.setFont(usernameLabel.getFont().deriveFont(Font.BOLD, 30));
 
+        //Initialising arrays
         bankArray = banks.toArray(new Bank[0]);
         accArray = cl.getAccounts().toArray(new BankAccount[0]);
 
         //Setting up window's layout
         panel.setLayout(new GridLayout(4, 1));
 
+        //Filling JLists
         bankList = new JList<>(bankArray);
         bankAccountsList = new JList<>(accArray);
-        
+
+        //Adding components to the panels
         personalPanel.add(usernameLabel);
 
         bankPanel.add(banksLabel);
@@ -55,7 +59,7 @@ public class UserPage extends JFrame {
         panel.add(accountsPanel);
         panel.add(buttonPanel);
 
-
+        //Creating a bank account for the chosen bank of the specific JList
         createBankAcc.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -64,6 +68,7 @@ public class UserPage extends JFrame {
                     JOptionPane.showMessageDialog(null, "You need to select a Bank", "Error", JOptionPane.ERROR_MESSAGE);
                 }else {
                     cl.joinBank(b);
+
                     // Retrieve the updated list of BankAccount objects after joining the bank
                     BankAccount[] accArray = cl.getAccounts().toArray(new BankAccount[0]);
 
@@ -73,6 +78,7 @@ public class UserPage extends JFrame {
             }
         });
 
+        //Access to bank account's information and actions
         accessButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -86,6 +92,7 @@ public class UserPage extends JFrame {
             }
         });
 
+        //Returning to login page
         logoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

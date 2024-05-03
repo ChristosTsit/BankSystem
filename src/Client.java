@@ -15,11 +15,13 @@ public class Client {
 
     public void joinBank(Bank b){
         if(!b.getClients().contains(this)){
-            b.addClient(this);
+            b.getClients().add(this);
+            b.setNumberOfClients(b.getNumberOfClients()+1);
             BankAccount bankAccount = new BankAccount(this,b);
             if(!accounts.contains(bankAccount)){
                 accounts.add(bankAccount);
             }
+            JOptionPane.showMessageDialog(null, "Bank Account Created", "Information", JOptionPane.INFORMATION_MESSAGE);
         }else{
             JOptionPane.showMessageDialog(null, "You already own an account on this bank", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -27,12 +29,14 @@ public class Client {
 
     public void leaveBank(Bank b){
         if(b.getClients().contains(this)){
-            b.removeClient(this);
+            b.getClients().remove(this);
+            b.setNumberOfClients(b.getNumberOfClients()-1);
             for(int i=0;i<accounts.size();i++){
                 if(accounts.get(i).getBank()==b){
                     accounts.remove(accounts.get(i));
                 }
             }
+            JOptionPane.showMessageDialog(null, "Bank Account Deleted", "Information", JOptionPane.INFORMATION_MESSAGE);
         }else{
             JOptionPane.showMessageDialog(null, "Bank Account Not Found", "Error", JOptionPane.ERROR_MESSAGE);
         }

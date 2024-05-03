@@ -12,24 +12,16 @@ public class Bank {
         this.clients = new ArrayList<>();
     }
 
-    public void addClient(Client cl){
-        clients.add(cl);
-        numberOfClients++;
-        JOptionPane.showMessageDialog(null, "Bank Account Created", "Information", JOptionPane.INFORMATION_MESSAGE);
-    }
-
-    public void removeClient(Client cl){
-        clients.remove(cl);
-        numberOfClients--;
-        JOptionPane.showMessageDialog(null, "Bank Account Deleted", "Information", JOptionPane.INFORMATION_MESSAGE);
-    }
-
     public String getName() {
         return name;
     }
 
     public int getNumberOfClients() {
         return numberOfClients;
+    }
+
+    public void setNumberOfClients(int numberOfClients) {
+        this.numberOfClients = numberOfClients;
     }
 
     public ArrayList<Client> getClients() {
