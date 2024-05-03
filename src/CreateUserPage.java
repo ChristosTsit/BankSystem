@@ -98,7 +98,7 @@ public class CreateUserPage extends JFrame {
 
         this.setContentPane(panel);
         this.setVisible(true);
-		this.setSize(700, 300);
+		this.setSize(700, 100);
 		this.setTitle("Create User");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

@@ -16,6 +16,7 @@ public class BankAccountGUI extends JFrame {
 
     private  JLabel balanceLabel = new JLabel();
     private  JLabel loanLabel = new JLabel();
+    private JLabel bankLabel = new JLabel();
 
     private JTextField withdrawTextField = new JTextField("Enter amount to withdraw...");
     private JTextField depositTextField = new JTextField("Enter amount to deposit...");
@@ -30,10 +31,15 @@ public class BankAccountGUI extends JFrame {
     private JButton deleteAccButton = new JButton("Delete Account");
 
     BankAccountGUI(ArrayList<Bank> banks , ArrayList<Client> users, Client cl, BankAccount acc){
+        bankLabel.setText("Bank:"+acc.getBank());
         balanceLabel.setText("Balance:"+acc.getBalance()+"$");
         loanLabel.setText("Loan:"+acc.getLoan()+"$");
+
         balanceLabel.setFont(balanceLabel.getFont().deriveFont(Font.BOLD, 30));
         loanLabel.setFont(loanLabel.getFont().deriveFont(Font.BOLD, 30));
+        bankLabel.setFont(bankLabel.getFont().deriveFont(Font.BOLD,30));
+
+        bankLabel.setHorizontalAlignment(JLabel.CENTER);
 
         depositTextField.setPreferredSize(new Dimension(150, 20));
         withdrawTextField.setPreferredSize(new Dimension(170, 20));
@@ -41,8 +47,9 @@ public class BankAccountGUI extends JFrame {
         loanTextField.setPreferredSize(new Dimension(150, 20));
 
         //Setting up window's layout
-        panel.setLayout(new GridLayout(5, 1));
+        panel.setLayout(new GridLayout(6, 1));
 
+        panel.add(bankLabel);
 
         labelPanel.add(balanceLabel);
         labelPanel.add(loanLabel);
@@ -169,7 +176,7 @@ public class BankAccountGUI extends JFrame {
 
         this.setContentPane(panel);
         this.setVisible(true);
-		this.setSize(500, 500);
+		this.setSize(600, 500);
 		this.setTitle("Bank Account Page");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

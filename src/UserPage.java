@@ -27,6 +27,7 @@ public class UserPage extends JFrame {
 
     UserPage(ArrayList<Bank> banks ,ArrayList<Client> users, Client cl){
         usernameLabel.setText("Name:"+cl.getName());
+        usernameLabel.setFont(usernameLabel.getFont().deriveFont(Font.BOLD, 30));
 
         bankArray = banks.toArray(new Bank[0]);
         accArray = cl.getAccounts().toArray(new BankAccount[0]);

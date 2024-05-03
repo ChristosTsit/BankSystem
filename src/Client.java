@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class Client {
@@ -19,6 +20,8 @@ public class Client {
             if(!accounts.contains(bankAccount)){
                 accounts.add(bankAccount);
             }
+        }else{
+            JOptionPane.showMessageDialog(null, "You already own an account on this bank", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -30,6 +33,8 @@ public class Client {
                     accounts.remove(accounts.get(i));
                 }
             }
+        }else{
+            JOptionPane.showMessageDialog(null, "Bank Account Not Found", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 

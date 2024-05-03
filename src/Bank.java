@@ -13,23 +13,15 @@ public class Bank {
     }
 
     public void addClient(Client cl){
-        if(clients.contains(cl)){
-            JOptionPane.showMessageDialog(null, "Already a client", "Error", JOptionPane.ERROR_MESSAGE);
-        }else{
-            clients.add(cl);
-            numberOfClients++;
-            JOptionPane.showMessageDialog(null, "Client Added", "Information", JOptionPane.INFORMATION_MESSAGE);
-        }
+        clients.add(cl);
+        numberOfClients++;
+        JOptionPane.showMessageDialog(null, "Bank Account Created", "Information", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void removeClient(Client cl){
-        if(clients.contains(cl)){
-            clients.remove(cl);
-            numberOfClients--;
-            JOptionPane.showMessageDialog(null, "Client Removed", "Information", JOptionPane.INFORMATION_MESSAGE);
-        }else {
-            JOptionPane.showMessageDialog(null, "Client not found", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        clients.remove(cl);
+        numberOfClients--;
+        JOptionPane.showMessageDialog(null, "Bank Account Deleted", "Information", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public String getName() {
