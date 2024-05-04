@@ -21,6 +21,6 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        new CreateUserPage(banks,users);
+        new MainPage(banks,users);
     }
 }

@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class CreateUserPage extends JFrame {
     //Panel
@@ -50,7 +51,9 @@ public class CreateUserPage extends JFrame {
                 //Checking if all fields are filled
                 if(nameText.isEmpty() ||ssnText.isEmpty()){
                     JOptionPane.showMessageDialog(null, "You need to fill all of the fields", "Error", JOptionPane.ERROR_MESSAGE);
-                }else{
+                } else if (!Pattern.matches("[a-zA-Z]+", nameText)) {
+                    JOptionPane.showMessageDialog(null, "Invalid Name Input\nOnly letters are allowed", "Error", JOptionPane.ERROR_MESSAGE);
+                } else{
 
                     //Checking if format is correct
                     try {
@@ -75,6 +78,7 @@ public class CreateUserPage extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //Exiting current window
+                new MainPage(banks,users);
                 dispose();
             }
         });
