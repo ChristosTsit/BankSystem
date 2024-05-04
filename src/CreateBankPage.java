@@ -7,15 +7,15 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class CreateBankPage extends JFrame {
-    JPanel panel = new JPanel();
+    private JPanel panel = new JPanel();
 
-    JLabel nameLabel = new JLabel("Firm:");
+    private JLabel nameLabel = new JLabel("Firm:");
 
-    JTextField nameField = new JTextField("Enter firm's name...");
+    private JTextField nameField = new JTextField("Enter firm's name...");
 
-    JButton createButton = new JButton("Create Bank");
-    JButton loginButton = new JButton("Log in");
-    JButton exitButton = new JButton("Exit");
+    private JButton createButton = new JButton("Create Bank");
+    private JButton loginButton = new JButton("Log in");
+    private JButton exitButton = new JButton("Exit");
 
     CreateBankPage(ArrayList<Bank> banks, ArrayList<Client> users){
         panel.add(nameLabel);
@@ -49,6 +49,22 @@ public class CreateBankPage extends JFrame {
             }
         });
 
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String name = nameField.getText();
+                Bank b = new Bank(name);
+                if(banks.contains(b)){
+                    b = banks.get(banks.indexOf(b));
+                    JOptionPane.showMessageDialog(null, "Successful Log In", "Information", JOptionPane.INFORMATION_MESSAGE);
+                    new BankPage(banks,users,b);
+                    dispose();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Invalid Credentials!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -62,6 +78,7 @@ public class CreateBankPage extends JFrame {
         this.setSize(500,100);
         this.setVisible(true);
         this.setTitle("Create Bank Page");
+        this.setLocation((Main.screenSize.width-this.getWidth())/2,(Main.screenSize.height-this.getHeight())/2);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }

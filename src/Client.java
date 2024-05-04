@@ -81,4 +81,9 @@ public class Client {
         // Compare the data members and return accordingly
         return (ssn == cl.getSsn()&& name.equals(cl.getName()));
     }
+
+    @Override
+    public String toString(){
+        return name;
+    }
 }

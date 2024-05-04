@@ -5,11 +5,13 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class MainPage extends JFrame{
-    JPanel panel = new JPanel();
 
-    JButton bankButton = new JButton("Banks Page");
-    JButton userButton = new JButton("Users Page");
-    JButton exitButton = new JButton("Exit");
+
+    private JPanel panel = new JPanel();
+
+    private JButton bankButton = new JButton("Banks Page");
+    private JButton userButton = new JButton("Users Page");
+    private JButton exitButton = new JButton("Exit");
 
     MainPage(ArrayList<Bank> banks,ArrayList<Client> users){
         panel.setLayout(new GridLayout(3, 1));
@@ -45,6 +47,7 @@ public class MainPage extends JFrame{
         this.setSize(200,200);
         this.setVisible(true);
         this.setTitle("Main Page");
+        this.setLocation((Main.screenSize.width-this.getWidth())/2,(Main.screenSize.height-this.getHeight())/2);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }

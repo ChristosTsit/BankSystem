@@ -70,6 +70,6 @@ public class BankAccount {
 
     @Override
     public String toString(){
-        return this.getBank().getName()+" Account";
+        return getBank().getName()+" Account";
     }
 }

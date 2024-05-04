@@ -105,6 +105,7 @@ public class UserPage extends JFrame {
         this.setVisible(true);
 		this.setSize(600, 600);
 		this.setTitle("User Page");
+        this.setLocation((Main.screenSize.width-this.getWidth())/2,(Main.screenSize.height-this.getHeight())/2);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
