@@ -12,32 +12,16 @@ public class Bank {
         this.clients = new ArrayList<>();
     }
 
-    public void addClient(Client cl){
-        if(clients.contains(cl)){
-            JOptionPane.showMessageDialog(null, "Already a client", "Error", JOptionPane.ERROR_MESSAGE);
-        }else{
-            clients.add(cl);
-            numberOfClients++;
-            JOptionPane.showMessageDialog(null, "Client Added", "Information", JOptionPane.INFORMATION_MESSAGE);
-        }
-    }
-
-    public void removeClient(Client cl){
-        if(clients.contains(cl)){
-            clients.remove(cl);
-            numberOfClients--;
-            JOptionPane.showMessageDialog(null, "Client Removed", "Information", JOptionPane.INFORMATION_MESSAGE);
-        }else {
-            JOptionPane.showMessageDialog(null, "Client not found", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
     public String getName() {
         return name;
     }
 
     public int getNumberOfClients() {
         return numberOfClients;
+    }
+
+    public void setNumberOfClients(int numberOfClients) {
+        this.numberOfClients = numberOfClients;
     }
 
     public ArrayList<Client> getClients() {
@@ -47,5 +31,25 @@ public class Bank {
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        // If the object is compared with itself then return true
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof Bank)) {
+            return false;
+        }
+
+        // typecast o to Complex so that we can compare data members
+        Bank b = (Bank) obj;
+
+        // Compare the data members and return accordingly
+
+        return name.equals(b.getName());
     }
 }

@@ -33,19 +33,22 @@ public class BankAccount {
     }
 
     public void payLoan(int amount){
-        if (amount <= balance) {
-            if(amount<loan){
-                balance-=amount;
-                loan-=amount;
-                JOptionPane.showMessageDialog(null, "Payment Completed!\n"+loan+"$ remaining!", "Information", JOptionPane.INFORMATION_MESSAGE);
+        if(loan==0){
+            JOptionPane.showMessageDialog(null, "There are no pending payments!", "Information", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            if (amount <= balance) {
+                if(amount<loan){
+                    balance-=amount;
+                    loan-=amount;
+                    JOptionPane.showMessageDialog(null, "Payment Completed!\n"+loan+"$ remaining!", "Information", JOptionPane.INFORMATION_MESSAGE);
+                }else {
+                    balance-=loan;
+                    loan = 0;
+                    JOptionPane.showMessageDialog(null, "The loan has been repayed", "Information", JOptionPane.INFORMATION_MESSAGE);
+                }
             }else {
-                balance-=loan;
-                loan = 0;
-                JOptionPane.showMessageDialog(null, "The loan has been repayed", "Information", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Insufficient Funds", "Error", JOptionPane.ERROR_MESSAGE);
             }
-
-        }else {
-            JOptionPane.showMessageDialog(null, "Insufficient Funds", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -67,6 +70,6 @@ public class BankAccount {
 
     @Override
     public String toString(){
-        return this.getBank().getName()+" Account";
+        return getBank().getName()+" Account";
     }
 }

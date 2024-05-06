@@ -7,21 +7,23 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class BankAccountGUI extends JFrame {
+    //Panels
     private JPanel panel = new JPanel();
     private JPanel labelPanel = new JPanel();
     private JPanel withdrawPanel = new JPanel();
     private JPanel depositPanel = new JPanel();
     private JPanel loanPanel = new JPanel();
     private JPanel buttonPanel = new JPanel();
-
+    //Labels
     private  JLabel balanceLabel = new JLabel();
     private  JLabel loanLabel = new JLabel();
-
+    private JLabel bankLabel = new JLabel();
+    //Texts
     private JTextField withdrawTextField = new JTextField("Enter amount to withdraw...");
     private JTextField depositTextField = new JTextField("Enter amount to deposit...");
     private JTextField loanTextField = new JTextField("Enter amount for loan...");
     private JTextField payLoanTextField = new JTextField("Enter amount to pay...");
-
+    //Buttons
     private JButton withdrawButton = new JButton("Withdraw");
     private JButton depositButton = new JButton("Deposit");
     private JButton getLoanButton = new JButton("Get Loan");
@@ -30,10 +32,16 @@ public class BankAccountGUI extends JFrame {
     private JButton deleteAccButton = new JButton("Delete Account");
 
     BankAccountGUI(ArrayList<Bank> banks , ArrayList<Client> users, Client cl, BankAccount acc){
+        //Customizing components
+        bankLabel.setText("Bank:"+acc.getBank());
         balanceLabel.setText("Balance:"+acc.getBalance()+"$");
         loanLabel.setText("Loan:"+acc.getLoan()+"$");
+
         balanceLabel.setFont(balanceLabel.getFont().deriveFont(Font.BOLD, 30));
         loanLabel.setFont(loanLabel.getFont().deriveFont(Font.BOLD, 30));
+        bankLabel.setFont(bankLabel.getFont().deriveFont(Font.BOLD,30));
+
+        bankLabel.setHorizontalAlignment(JLabel.CENTER);
 
         depositTextField.setPreferredSize(new Dimension(150, 20));
         withdrawTextField.setPreferredSize(new Dimension(170, 20));
@@ -41,8 +49,10 @@ public class BankAccountGUI extends JFrame {
         loanTextField.setPreferredSize(new Dimension(150, 20));
 
         //Setting up window's layout
-        panel.setLayout(new GridLayout(5, 1));
+        panel.setLayout(new GridLayout(6, 1));
 
+        //Adding components to the panels
+        panel.add(bankLabel);
 
         labelPanel.add(balanceLabel);
         labelPanel.add(loanLabel);
@@ -92,6 +102,7 @@ public class BankAccountGUI extends JFrame {
             }
         });
 
+        //Withdrawing money from the account
         withdrawButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -106,6 +117,7 @@ public class BankAccountGUI extends JFrame {
             }
         });
 
+        //Depositing money to the account
         depositButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -120,6 +132,7 @@ public class BankAccountGUI extends JFrame {
             }
         });
 
+        //Getting a loan
         getLoanButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -135,6 +148,7 @@ public class BankAccountGUI extends JFrame {
             }
         });
 
+        //Paying off the loan
         payLoanButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -150,6 +164,7 @@ public class BankAccountGUI extends JFrame {
             }
         });
 
+        //Return to the previous window
         goBackButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -158,6 +173,7 @@ public class BankAccountGUI extends JFrame {
             }
         });
 
+        //Delete account and return to the previous window
         deleteAccButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -169,8 +185,9 @@ public class BankAccountGUI extends JFrame {
 
         this.setContentPane(panel);
         this.setVisible(true);
-		this.setSize(500, 500);
+		this.setSize(600, 500);
 		this.setTitle("Bank Account Page");
+        this.setLocation((Main.screenSize.width-this.getWidth())/2,(Main.screenSize.height-this.getHeight())/2);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
